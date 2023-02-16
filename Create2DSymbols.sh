@@ -22,7 +22,7 @@ echo "name=2DSymbols"  >> $ff
 echo "description= Symbols Catalog for use in 2D plan"  >> $ff
 echo "version=1.5.7"  >> $ff
 echo "license=GPL-3.0"  >> $ff
-echo "provider=AlbrechtL (based on dorin)"  >> $ff
+echo "provider=PabloAB (based on Albrecht and dorin)"  >> $ff
 echo -en '\n\n' >> $ff
 
 cnt=0
@@ -62,7 +62,7 @@ cnt=`expr $cnt + 1`
  echo id#$cnt=2DSymbol#$name >> $ff
  echo name#$cnt=$name >> $ff
 # echo information#$cnt= >> $ff
- echo category#$cnt="Symbols-electrical-de" >> $ff
+ echo category#$cnt="Symbols electrical AR" >> $ff
  echo icon#$cnt=/$cn >> $ff
  echo planIcon#$cnt=/$pn >> $ff
 # echo model#$cnt=/models/$name.obj >> $ff
@@ -73,7 +73,7 @@ cnt=`expr $cnt + 1`
  echo elevation#$cnt=50.0 >> $ff
  echo movable#$cnt=true >> $ff
  echo doorOrWindow#$cnt=false >> $ff
- echo creator#$cnt=dorin >> $ff
+ echo creator#$cnt=pabloab >> $ff
  echo -en '\n\n' >> $ff
 
  # Try to display 2D symbols inside the 3D view
