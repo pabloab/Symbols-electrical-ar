@@ -41,8 +41,8 @@ pn=plan/$nn
  echo $nn
  { widthOrig=$(convert "$pn" -format '%w' info:)
    depthOrig=$(convert "$pn" -format '%h' info:)
-   width=$[$widthOrig / 13]
-   depth=$[$depthOrig / 13]
+   width=$((widthOrig / 13))
+   depth=$((depthOrig / 13))
 
    # resize catalog icons
    convert -trim "$cn" "$cn"
@@ -57,7 +57,7 @@ pn=plan/$nn
   echo "The images are thus not cropped and resized to 256x256." >> $ff
   echo -en '\n\n' >> $ff
  }
-cnt=$(expr $cnt + 1)
+cnt=$((cnt + 1))
  fname=${pn%.*} # remove everything after the last dot (e.q. file suffix but leave everything else)
  fname=${fname##*/} #remove path -> filename
  name=${fname%.*} #symbol name
