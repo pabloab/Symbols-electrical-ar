@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ff="PluginFurnitureCatalog.properties" # Created will current locale, probably UTF-8
+ff="PluginFurnitureCatalog.properties" # Created with current locale, probably UTF-8
 echo "# PluginFurnitureCatalog.properties ( "$(date +"%d-%m-%Y") ")" > $ff
 echo "# Copyright (c) 2007-2017 Emmanuel PUYBARET / eTeks <info@eteks.com>." >> $ff
 echo -en '\n\n' >> $ff
