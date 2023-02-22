@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-ff=PluginFurnitureCatalog.properties
+ff="PluginFurnitureCatalog.properties" # Created will current locale, probably UTF-8
 echo "# PluginFurnitureCatalog.properties ( "$(date +"%d-%m-%Y") ")" > $ff
 echo "# Copyright (c) 2007-2017 Emmanuel PUYBARET / eTeks <info@eteks.com>." >> $ff
 echo -en '\n\n' >> $ff
@@ -65,8 +64,8 @@ for nn in  $(ls plan | sort -V); do
   echo name#$cnt="$name" >> $ff
   # echo information#$cnt= >> $ff
   echo category#$cnt="Symbols electrical AR" >> $ff
-  echo icon#$cnt=/$cn >> $ff
-  echo planIcon#$cnt=/$pn >> $ff
+  echo icon#$cnt=/"$cn" >> $ff
+  echo planIcon#$cnt=/"$pn" >> $ff
   # echo model#$cnt=/models/$name.obj >> $ff
   echo model#$cnt=/invisibleCube.obj >> $ff
   echo width#$cnt=$width >> $ff
@@ -97,7 +96,5 @@ done
 IFS=$OIFS
 
 mylib=${PWD##*/}.sh3f
-zip -r "$mylib" . -x *.git*
+zip -r "$mylib" . -x ./*.git*
 mv "$mylib" ../
-
-
