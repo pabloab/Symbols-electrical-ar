@@ -1,4 +1,6 @@
 #!/bin/bash
+
+
 ff=PluginFurnitureCatalog.properties
 echo "# PluginFurnitureCatalog.properties ( "$(date +"%d-%m-%Y") ")" > $ff
 echo "# Copyright (c) 2007-2017 Emmanuel PUYBARET / eTeks <info@eteks.com>." >> $ff
@@ -29,7 +31,7 @@ cnt=0
 #rm ListOfFile.txt
 OIFS=$IFS
 IFS=$'\n'
-for nn in  `ls plan | sort -V`
+for nn in  $(ls plan | sort -V)
 do
 {
 cp originals/$nn catalog/
@@ -37,8 +39,8 @@ cp originals/$nn plan/
 cn=catalog/$nn
 pn=plan/$nn
  echo $nn
- { widthOrig=`convert "$pn" -format '%w' info:`
-   depthOrig=`convert "$pn" -format '%h' info:`
+ { widthOrig=$(convert "$pn" -format '%w' info:)
+   depthOrig=$(convert "$pn" -format '%h' info:)
    width=$[$widthOrig / 13]
    depth=$[$depthOrig / 13]
 
@@ -55,7 +57,7 @@ pn=plan/$nn
   echo "The images are thus not cropped and resized to 256x256." >> $ff
   echo -en '\n\n' >> $ff
  }
-cnt=`expr $cnt + 1`
+cnt=$(expr $cnt + 1)
  fname=${pn%.*} # remove everything after the last dot (e.q. file suffix but leave everything else)
  fname=${fname##*/} #remove path -> filename
  name=${fname%.*} #symbol name
