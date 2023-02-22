@@ -36,7 +36,7 @@ IFS=$'\n'
 
 printf "Processing images...\n"
 
-for nn in  $(ls plan | sort -V); do
+for nn in  $(find ./plan/* -maxdepth 1 -printf '%f\n' | sort -V); do
   {
   cp originals/"$nn" catalog/
   cp originals/"$nn" plan/
@@ -100,11 +100,15 @@ done
 
 IFS=$OIFS
 
-
-printf "\nCompressing..."
+echo "Compressing..."
 
 mylib=${PWD##*/}.sh3f
-zip -qdg --recurse-paths "$mylib" . -x ./*.git*
+zip --quiet --recurse-paths "$mylib" . -x ./*.git*
 mv "$mylib" ../
 
-printf "Done."
+hash native2ascii 2>&- || { >&2 echo "Error: I require «native2ascii». Try instaling openjdk-8-jdk-headless package. Aborting."; exit 1; }
+
+native2ascii "$ff" "$ff-nonascii" # The .properties file of SH3F file should be encoded in ISO-8859-1, and for other caracters use \uxxxx Unicode sequence.
+mv --force "$ff-nonascii" "$ff"
+
+echo "Done."
