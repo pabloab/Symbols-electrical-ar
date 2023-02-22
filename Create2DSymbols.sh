@@ -8,6 +8,8 @@ echo -en '\n\n' >> $ff
 echo "# Created by script Create2DSymbols.sh ( "$(date +"%d-%m-%Y") ")"  >> $ff
 echo "# To update, add new symbols in png-format in plan folder and run ./CreateSymbols.sh"  >> $ff
 echo "# Requires ImageMagick and zip"  >> $ff
+echo "# Also package openjdk-8-jdk-headless, for native2ascii command."  >> $ff
+
 echo "# Attention:"  >> $ff
 echo "# The script resizes (to 256x256, but keeping proportions) the original images and copy the result"  >> $ff
 echo "# in catalog folder (if ImageMagick is installed)." >> $ff
@@ -31,6 +33,9 @@ cnt=0
 #rm ListOfFile.txt
 OIFS=$IFS
 IFS=$'\n'
+
+printf "Processing images...\n"
+
 for nn in  $(ls plan | sort -V); do
   {
   cp originals/"$nn" catalog/
@@ -95,6 +100,11 @@ done
 
 IFS=$OIFS
 
+
+printf "\nCompressing..."
+
 mylib=${PWD##*/}.sh3f
-zip -r "$mylib" . -x ./*.git*
+zip -qdg --recurse-paths "$mylib" . -x ./*.git*
 mv "$mylib" ../
+
+printf "Done."
