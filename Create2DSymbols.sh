@@ -108,7 +108,7 @@ mv "$mylib" ../
 
 hash native2ascii 2>&- || { >&2 echo "Error: I require «native2ascii». Try instaling openjdk-8-jdk-headless package. Aborting."; exit 1; }
 
-native2ascii "$ff" "$ff-nonascii" # The .properties file of SH3F file should be encoded in ISO-8859-1, and for other caracters use \uxxxx Unicode sequence.
+native2ascii -encoding UTF-8 "$ff" "$ff-nonascii" # The .properties file of SH3F file should be encoded in ISO-8859-1, and for other caracters use \uxxxx Unicode sequence.
 mv --force "$ff-nonascii" "$ff"
 
 echo "Done."
